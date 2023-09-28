@@ -7,7 +7,7 @@ function setObjectPosition(object, position) {
 	object.style.top = position.y + 'px';
 	object.style.left = position.x + 'px';
 }
-function createCircle(radious, color = 'black', position = { x: 0, y: 0 }) {
+function createCircle(radious, color = 'black', position = { x: 0, y: 550 }) {
 	const newCircle = document.createElement('div');
 	newCircle.style.cssText = `  width: ${radious}px;
   height: ${radious}px;
@@ -20,20 +20,13 @@ function createCircle(radious, color = 'black', position = { x: 0, y: 0 }) {
 	return newCircle;
 }
 
-async function animate(
-	object
-	// pathFunction,
-	// increment = 1,
-	// initialPosition = { x: 500, y: 500 }
-) {
-	console.log('animating');
-	// linePath(object, initialPosition, iteration);
-	let x = 0,
-		y = 0;
-	let xDir = 1;
-	let yDir = 1;
+async function boxBounce(object, initialPosition = { x: 0, y: 550 }) {
+	let x = initialPosition.x,
+		y = initialPosition.y;
+	let xDir = 5;
+	let yDir = 7;
 	while (1) {
-		await timeout(10);
+		await timeout(1);
 		if (x > 1000 - 50 || x < 0) {
 			xDir = xDir * -1;
 		}
@@ -42,17 +35,40 @@ async function animate(
 		}
 		x += xDir;
 		y += yDir;
-
+		// break
 		setObjectPosition(object, { x, y });
-		console.log({ x, y });
 	}
-	// setTimeout(() => {
-	//   console.log({ x: x++, y: y++ });
-	//   setObjectPosition(circle, { x: x++, y: y++ });
-	// }, '100');
-	// iteration += increment;
-	// requestAnimationFrame(animate);
+}
+async function projectile(
+	object,
+	angle,
+	force,
+	initialPosition = { x: 0, y: 550 }
+) {
+	let radians = (angle * Math.PI) / 180;
+
+	let i = 0,
+		xForce = force * Math.cos(radians),
+		yForce = force * Math.cos(radians);
+	let x = initialPosition.x,
+		y = initialPosition.y;
+	while (y >= 0 && x <= 950 && y <= 550 && x >= 0) {
+		await timeout(100);
+		createCircle(6, 'red', { x, y });
+		setObjectPosition(object, { x, y });
+		i += 0.5;
+		y -= yForce * i - 0.5 * 10 * i * i;
+		x += xForce * i;
+		// if (i > 500) break;
+	}
 }
 
-const circle = createCircle(50);
-animate(circle);
+// const circle1 = createCircle(50, 'black');
+const circle2 = createCircle(50, 'red');
+// const circle3 = createCircle(50, 'blue');
+// const circle4 = createCircle(50, 'green');
+// boxBounce(circle1);
+// boxBounce(circle2,{x:222,y:333});
+// boxBounce(circle3,{x:150,y:12});
+// boxBounce(circle4,{x:750,y:150});
+projectile(circle2, 7, 23);
