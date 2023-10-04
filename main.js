@@ -71,4 +71,4 @@ const circle2 = createCircle(50, 'red');
 // boxBounce(circle2,{x:222,y:333});
 // boxBounce(circle3,{x:150,y:12});
 // boxBounce(circle4,{x:750,y:150});
-projectile(circle2, 7, 23);
+projectile(circle2, 15, 23);
