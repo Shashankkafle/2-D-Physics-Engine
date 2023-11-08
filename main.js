@@ -63,12 +63,22 @@ async function projectile(
 	}
 }
 
+async function plot(eqn, start, end,resolution) {
+	let x = start;
+	while (x <= end) {
+		const point = createCircle(3, "black");
+		setObjectPosition(point, { x:x*50, y: eqn(x)*50 });
+		x+=resolution
+	}
+}
+plot(Math.sin,0,7.14,0.1)
+
 // const circle1 = createCircle(50, 'black');
-const circle2 = createCircle(50, 'red');
-// const circle3 = createCircle(50, 'blue');
-// const circle4 = createCircle(50, 'green');
-// boxBounce(circle1);
-// boxBounce(circle2,{x:222,y:333});
-// boxBounce(circle3,{x:150,y:12});
-// boxBounce(circle4,{x:750,y:150});
-projectile(circle2, 15, 23);
+// const circle2 = createCircle(50, 'red');
+// // const circle3 = createCircle(50, 'blue');
+// // const circle4 = createCircle(50, 'green');
+// // boxBounce(circle1);
+// // boxBounce(circle2,{x:222,y:333});
+// // boxBounce(circle3,{x:150,y:12});
+// // boxBounce(circle4,{x:750,y:150});
+// projectile(circle2, 15, 23);
