@@ -6,12 +6,6 @@
     <title>2-d Engine</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" />
-  </head>
-  <body>
-    <!-- <div id="rectangle1" class="rectangle"></div>
-    <div id="rectangle2" class="rectangle"></div> -->
-    <div id="animationArea"></div>
-    <div id="test"></div>
     <style>
       .rectangle {
         width: 50px;
@@ -30,7 +24,6 @@
         position: absolute;
         top: 300px;
         left: 500px;
-        /* -webkit-box-reflect: below      */
        }
       #test {
         width: 10px;
@@ -43,6 +36,32 @@
         left: 000px;
       }
     </style>
+  </head>
+  <body>
+<div id="controls" style="position: absolute; top: 50px; left: 500px; z-index: 10;">
+    Delay/Speed: <input id="bounceDelay" type="number" value="1" style="width: 40px;">
+      <button onclick="runBounce()">Bouncing Box</button> <br><br>
+
+    Angle: <input id="projAngle" type="number" value="45" style="width: 50px;">
+    Force: <input id="projForce" type="number" value="25" style="width: 50px;">
+    <button onclick="runProjectile()">Launch Projectile</button> <br><br>
+
+    Func: 
+    <select id="plotFunc">
+          <option value="sin">Sine</option>
+          <option value="cos">Cosine</option>
+    </select>
+    Start: <input id="plotStart" type="number" value="0" style="width: 40px;">
+    End: <input id="plotEnd" type="number" value="7.14" style="width: 50px;">
+    Res: <input id="plotRes" type="number" value="0.1" step="0.1" style="width: 50px;">
+    <button onclick="runPlot()">Plot Graph</button> <br><br>
+
+    <button onclick="clearScreen()">Clear Screen</button>
+    </div>
+
+    <div id="animationArea"></div>
+    <div id="test"></div>
+    
     <script src="main.js"></script>
   </body>
 </html>
