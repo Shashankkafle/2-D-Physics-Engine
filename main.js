@@ -20,13 +20,13 @@ function createCircle(radious, color = 'black', position = { x: 0, y: 550 }) {
 	return newCircle;
 }
 
-async function boxBounce(object, initialPosition = { x: 0, y: 550 }) {
+async function boxBounce(object, initialPosition = { x: 0, y: 550 },delay=1) {
 	let x = initialPosition.x,
 		y = initialPosition.y;
 	let xDir = 5;
 	let yDir = 7;
 	while (1) {
-		await timeout(1);
+		await timeout(delay);
 		if (x > 1000 - 50 || x < 0) {
 			xDir = xDir * -1;
 		}
